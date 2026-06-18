@@ -1,0 +1,163 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-brand: var(--brand);
+  --color-brand-foreground: var(--brand-foreground);
+  --color-ink: var(--ink);
+  --color-ink-foreground: var(--ink-foreground);
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+}
+
+:root {
+  --radius: 0.125rem;
+  /* Warm off-white paper */
+  --background: oklch(0.975 0.006 60);
+  --foreground: oklch(0.18 0.02 25);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.18 0.02 25);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.18 0.02 25);
+  /* Near-black ink with warm undertone */
+  --ink: oklch(0.16 0.025 25);
+  --ink-foreground: oklch(0.975 0.006 60);
+  /* Waldrop deep burgundy red — #7A1F1F */
+  --brand: oklch(0.34 0.13 27);
+  --brand-foreground: oklch(0.985 0.005 60);
+  --brand-deep: oklch(0.27 0.13 27); /* #660000 */
+  --brand-accent: oklch(0.40 0.14 27); /* #8C2B2B */
+  --primary: oklch(0.34 0.13 27);
+  --primary-foreground: oklch(0.985 0.005 60);
+  --secondary: oklch(0.94 0.006 60);
+  --secondary-foreground: oklch(0.18 0.02 25);
+  --muted: oklch(0.94 0.006 60);
+  --muted-foreground: oklch(0.45 0.015 25);
+  --accent: oklch(0.40 0.14 27);
+  --accent-foreground: oklch(0.985 0.005 60);
+  --destructive: oklch(0.55 0.22 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(0.88 0.008 60);
+  --input: oklch(0.88 0.008 60);
+  --ring: oklch(0.34 0.13 27);
+}
+
+.dark {
+  --background: oklch(0.13 0.015 25);
+  --foreground: oklch(0.96 0.006 60);
+  --card: oklch(0.18 0.02 25);
+  --card-foreground: oklch(0.96 0.006 60);
+  --popover: oklch(0.18 0.02 25);
+  --popover-foreground: oklch(0.96 0.006 60);
+  --ink: oklch(0.96 0.006 60);
+  --ink-foreground: oklch(0.13 0.015 25);
+  --brand: oklch(0.52 0.16 27);
+  --brand-foreground: oklch(0.99 0.005 60);
+  --brand-deep: oklch(0.42 0.15 27);
+  --brand-accent: oklch(0.58 0.16 27);
+  --primary: oklch(0.96 0.006 60);
+  --primary-foreground: oklch(0.13 0.015 25);
+  --secondary: oklch(0.22 0.02 25);
+  --secondary-foreground: oklch(0.96 0.006 60);
+  --muted: oklch(0.22 0.02 25);
+  --muted-foreground: oklch(0.68 0.015 25);
+  --accent: oklch(0.58 0.16 27);
+  --accent-foreground: oklch(0.13 0.015 25);
+  --destructive: oklch(0.65 0.2 27);
+  --destructive-foreground: oklch(0.99 0 0);
+  --border: oklch(1 0 0 / 12%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.52 0.16 27);
+}
+
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html { scroll-behavior: smooth; }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    font-feature-settings: "ss01", "cv11";
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    font-weight: 800;
+  }
+}
+
+@utility container-x {
+  width: 100%;
+  margin-inline: auto;
+  padding-inline: 1.25rem;
+  max-width: 80rem;
+  @media (min-width: 768px) { padding-inline: 2rem; }
+}
+
+@utility eyebrow {
+  font-family: var(--font-sans);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--color-brand);
+}
+
+@utility blueprint-grid {
+  background-image:
+    linear-gradient(to right, color-mix(in oklab, var(--color-foreground) 5%, transparent) 1px, transparent 1px),
+    linear-gradient(to bottom, color-mix(in oklab, var(--color-foreground) 5%, transparent) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+@utility nametag {
+  /* Hardhat-style construction ID nametag */
+  background: linear-gradient(180deg, var(--color-brand) 0%, color-mix(in oklab, var(--color-brand) 80%, black) 100%);
+  color: var(--color-brand-foreground);
+  border: 2px solid color-mix(in oklab, var(--color-brand) 70%, black);
+  box-shadow: 0 2px 0 color-mix(in oklab, var(--color-brand) 50%, black), inset 0 1px 0 rgba(255,255,255,0.15);
+  font-family: var(--font-display);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@keyframes hero-kenburns {
+  0% { transform: scale(1.08) translate3d(0,0,0); }
+  100% { transform: scale(1.18) translate3d(-2%,-1%,0); }
+}
+@keyframes hero-slide-up {
+  0% { transform: translateY(100%); }
+  100% { transform: translateY(0); }
+}
+@keyframes marquee-x {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
